@@ -26,16 +26,15 @@ def score(game):
                 if game[i+2] == '/':
                     result -= get_value(game[i+1])
 
-        if not in_first_half:
+        # checks the frame's number
+        if not in_first_half or game[i] == 'x':
             frame += 1
-        if in_first_half == True:
-            in_first_half = False
+            in_first_half = True
         else:
-            in_first_half = True
-        if game[i] == 'X' or game[i] == 'x':
-            in_first_half = True
-            frame += 1
+            in_first_half = False
+
     return result
+
 
 def get_value(char):
     """Gets the character, whih indicates the roll and returns .
@@ -46,7 +45,6 @@ def get_value(char):
     Returns:
         the score of the roll (integer)
     """
-
     if char >= '1' and char <= '9':
         return int(char)
     elif char in ['x', '/']:
@@ -55,4 +53,3 @@ def get_value(char):
         return 0
     else:
         raise ValueError()
-
