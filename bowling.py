@@ -1,4 +1,13 @@
 def score(game):
+    """Gets a valid sequence of rolls for one line of American Ten-Pin Bowling and produces the total score for the game. 
+
+    Args:
+        game = string or list of chars. Valid values each char: numbers 1-9, "x", "/", "-"
+
+    Returns:
+        the total score (integer)
+    """
+
     result = 0
     frame = 1
     in_first_half = True
@@ -31,6 +40,15 @@ def score(game):
     return result
 
 def get_value(char):
+    """Gets the character, whih indicates the roll and returns .
+
+    Args:
+        char
+
+    Returns:
+        the score of the roll (integer)
+    """
+
     if char == '1' or char == '2' or char == '3' or \
        char == '4' or char == '5' or char == '6' or \
        char == '7' or char == '8' or char == '9':
