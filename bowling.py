@@ -1,8 +1,8 @@
 def score(game):
-    """Gets a valid sequence of rolls for one line of American Ten-Pin Bowling and produces the total score for the game. 
+    """Gets a valid sequence of rolls for one line of American Ten-Pin Bowling and produces the total score for the game.
 
     Args:
-        game = string or list of chars. Valid values each char: numbers 1-9, "x", "/", "-"
+        game = string or list of chars. (“X” indicates a strike, “/” indicates a spare, “-” indicates a miss)
 
     Returns:
         the total score (integer)
@@ -12,19 +12,19 @@ def score(game):
     result = 0
     in_first_half = True
     frame = 1
-    MAX_FRAMES = 10   
+    MAX_FRAMES = 10
 
     for i in range(len(game)):
         # calculates the score of the roll
         result += get_value(game[i])
         if game[i] == '/':
-            result += - get_value(game[i-1])
+            result += - get_value(game[i - 1])
         if frame < MAX_FRAMES and game[i] in ['x', '/']:
-            result += get_value(game[i+1])
+            result += get_value(game[i + 1])
             if game[i] == 'x':
-                result += get_value(game[i+2])
-                if game[i+2] == '/':
-                    result -= get_value(game[i+1])
+                result += get_value(game[i + 2])
+                if game[i + 2] == '/':
+                    result -= get_value(game[i + 1])
 
         # checks the frame's number
         if not in_first_half or game[i] == 'x':
